@@ -114,7 +114,7 @@ class network:
 
         # -------------------------調整するパラメータ---------------------------------------
 
-        self.gamma = 0.5  # 保管した報酬を時系列で関連づける
+        self.gamma = 0.8  # 保管した報酬を時系列で関連づける
         self.decay_rate = 0.8  # RMSpropの移動平均をとる際のパラメータ
         self.batch_size = 30  # バッチサイズ
         self.optimizer = RMSProp(

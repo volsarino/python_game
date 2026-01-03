@@ -54,24 +54,38 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-    if episode_number==1000:
+    if episode_number == 1000:
         end_time = time.time()
         elapsed_time = end_time - start_time
-        
+
         print("\n" + "="*30)
-        print(f"学習が完了しました。")
+        print("学習が完了しました。")
         print(f"総学習時間: {elapsed_time:.2f} 秒")
         print("="*30 + "\n")
-        x=np.linspace(0,1000,1000)
-        plt.figure(figsize=(5, 2.7), layout='constrained')
-        plt.plot(episode_history, reward_history, label="Episode Reward")
-        plt.xlabel('episode')
-        plt.ylabel('reward')
-        plt.title("Simple Plot")
-        plt.legend()
+
+        # episode = 1〜1000 を明示
+        x = np.arange(1, episode_number + 1)
+
+        plt.figure(figsize=(5, 2.7))
+
+        # 凡例ラベルなし・タイトルなし
+        plt.plot(episode_history, reward_history)
+
+        # 軸ラベルは残す（レポートに有用）
+        plt.xlabel("episode")
+        plt.ylabel("reward")
+
+        # ★ 全条件で比較しやすくするため縦軸固定
+        plt.ylim(0, 50)
+
+        # 余白を自動調整
+        plt.tight_layout()
+
         plt.show()
+
         pygame.quit()
         sys.exit()
+
 
     if done:
         episode_number += 1
